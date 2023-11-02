@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet, FlatList} from 'react-native';
-import User from './User';
+import {FlatList} from 'react-native';
+import User from '../components/User';
 
 export default () => {
   const [users, setUsers] = useState([]);
@@ -12,21 +12,6 @@ export default () => {
   }, []);
 
   return users.length ? (
-    <FlatList
-      data={users}
-      renderItem={({item}) => <User user={item} style={styles.container} />}
-    />
+    <FlatList data={users} renderItem={({item}) => <User user={item} />} />
   ) : null;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    gap: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    marginBottom: 4,
-    borderBottomWidth: 0.6,
-    borderBottomColor: '#ccc',
-  },
-});

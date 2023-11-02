@@ -13,13 +13,22 @@ export default ({user}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    gap: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginBottom: 4,
+    borderBottomWidth: 0.6,
+    borderBottomColor: '#ccc',
+  },
   image: {
     width: 60,
     height: 60,
     borderRadius: 30,
   },
   nameText: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '500',
     color: '#000',
     textAlignVertical: 'center',

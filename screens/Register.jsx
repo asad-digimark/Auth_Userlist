@@ -2,11 +2,17 @@ import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {useState} from 'react';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import {useAuthContext} from '../auth/AuthProvider';
 
 export default ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const {register} = useAuthContext();
+
+  const handleSubmit = () => {
+    register(email, password);
+  };
 
   return (
     <ScrollView>
@@ -37,11 +43,7 @@ export default ({navigation}) => {
           title="Sign Up"
           backgroundColor="#2e64e5"
           color="#fff"
-          onPress={() => {
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-          }}
+          onPress={handleSubmit}
         />
         <Text style={{textAlign: 'center'}}>
           By registering, you confirm that you accept our Terms of service and
