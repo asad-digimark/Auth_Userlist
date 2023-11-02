@@ -4,7 +4,6 @@ import User from '../components/User';
 
 export default () => {
   const [users, setUsers] = useState([]);
-
   useEffect(() => {
     fetch('https://api.github.com/users')
       .then(res => res.json())

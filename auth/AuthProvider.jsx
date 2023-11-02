@@ -2,7 +2,7 @@ import {createContext, useState, useContext, useEffect} from 'react';
 import Navigation from '../navigation';
 import AuthStack from '../navigation/AuthStack';
 import AppStack from '../navigation/AppStack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
 
 export const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
@@ -12,12 +12,10 @@ export default () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    AsyncStorage.getItem('_user')
-      .then(data => {
-        if (data) setUser(data);
-        setLoading(false);
-      })
-      .catch(e => setLoading(false));
+    return auth().onAuthStateChanged(user => {
+      setUser(user);
+      if (loading) setLoading(false);
+    });
   }, []);
 
   if (loading) return null;
@@ -25,14 +23,28 @@ export default () => {
   return (
     <AuthContext.Provider
       value={{
-        user,
-        login: (email, password) => {
-          setUser(email);
-          AsyncStorage.setItem('_user', email);
+        login: async (email, password) => {
+          try {
+            await auth().signInWithEmailAndPassword(email, password);
+          } catch (e) {
+            console.error(e.code);
+          }
         },
-        logout: () => {
-          setUser();
-          AsyncStorage.removeItem('_user');
+        register: async (email, password) => {
+          try {
+            await auth().createUserWithEmailAndPassword(email, password);
+            console.warn('User created successfully');
+          } catch (e) {
+            console.error(e.code);
+          }
+        },
+        logout: async () => {
+          try {
+            await auth().signOut();
+            console.warn('User signed out!');
+          } catch (e) {
+            console.error(e.code);
+          }
         },
       }}>
       <Navigation>{user ? <AppStack /> : <AuthStack />}</Navigation>

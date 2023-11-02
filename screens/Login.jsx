@@ -10,7 +10,7 @@ export default ({navigation}) => {
   const {login} = useAuthContext();
 
   const handleSubmit = () => {
-    login(email);
+    login(email, password);
   };
 
   return (
