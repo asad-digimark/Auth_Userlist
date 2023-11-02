@@ -6,7 +6,7 @@
  */
 
 import AuthProvider from './auth/AuthProvider';
-// import Navigation from './navigation';
+
 export default function App() {
   return <AuthProvider />;
 }
