@@ -1,18 +1,12 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Dimensions} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {useState} from 'react';
-const windowHeight = Dimensions.get('window').height;
+import FormButton from '../components/FormButton';
+import FormInput from '../components/FormInput';
 
 export default ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Login</Text>
@@ -41,29 +35,6 @@ export default ({navigation}) => {
   );
 };
 
-const FormButton = ({title, backgroundColor, color, ...rest}) => (
-  <TouchableOpacity style={[styles.btnContainer, {backgroundColor}]} {...rest}>
-    <Text style={[styles.btnText, {color}]}>{title}</Text>
-  </TouchableOpacity>
-);
-
-const FormInput = ({icon, ...rest}) => {
-  return (
-    <View style={styles.input}>
-      {icon && (
-        <AntDesign name={icon} size={24} style={{alignSelf: 'center'}} />
-      )}
-      <TextInput
-        {...rest}
-        style={{
-          flex: 1,
-          fontSize: 16,
-        }}
-      />
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -76,24 +47,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     textAlign: 'center',
-  },
-  btnContainer: {
-    height: windowHeight / 16,
-    justifyContent: 'center',
-    borderRadius: 8,
-  },
-  btnText: {
-    fontSize: 18,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  input: {
-    height: windowHeight / 16,
-    flexDirection: 'row',
-    paddingHorizontal: 8,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    gap: 8,
   },
 });

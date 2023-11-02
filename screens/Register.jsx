@@ -1,16 +1,7 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Dimensions} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {useState} from 'react';
-const height = Dimensions.get('window').height / 16;
+import FormInput from '../components/FormInput';
+import FormButton from '../components/FormButton';
 
 export default ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -78,32 +69,6 @@ export default ({navigation}) => {
   );
 };
 
-const FormInput = ({icon = '', ...rest}) => {
-  return (
-    <View style={styles.input}>
-      {icon && (
-        <AntDesign name={icon} size={24} style={{alignSelf: 'center'}} />
-      )}
-      <TextInput
-        {...rest}
-        style={{
-          flex: 1,
-          fontSize: 16,
-        }}
-      />
-    </View>
-  );
-};
-
-const FormButton = ({title, icon, backgroundColor, color, ...rest}) => (
-  <TouchableOpacity style={[styles.btnContainer, {backgroundColor}]} {...rest}>
-    {icon && (
-      <FontAwesome name={icon} size={24} style={{alignSelf: 'center'}} />
-    )}
-    <Text style={[styles.btnText, {color}]}>{title}</Text>
-  </TouchableOpacity>
-);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -116,28 +81,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     textAlign: 'center',
-  },
-  btnContainer: {
-    height,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-  },
-  btnText: {
-    flex: 1,
-    fontSize: 18,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  input: {
-    height,
-    flexDirection: 'row',
-    paddingHorizontal: 8,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    gap: 8,
   },
 });
