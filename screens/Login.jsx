@@ -35,6 +35,7 @@ export default ({navigation}) => {
         backgroundColor="#2e64e5"
         color="#fff"
         onPress={handleSubmit}
+        disabled={!email || !password}
       />
       <FormButton title="Forgot Password" color="#2e64e5" />
       <FormButton
