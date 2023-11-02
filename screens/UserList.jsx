@@ -1,29 +1,22 @@
 import {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
+import User from './User';
 
 export default () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://10.0.2.2:3000/users')
+    fetch('https://api.github.com/users')
       .then(res => res.json())
       .then(data => setUsers(data));
   }, []);
-  return users.length ? (
-    <FlatList data={users} renderItem={({item}) => <User user={item} />} />
-  ) : null;
-};
 
-const User = ({user}) => {
-  return (
-    <View style={styles.container}>
-      <Image source={{uri: user.avatar_url}} style={styles.image} />
-      <View>
-        <Text style={styles.nameText}>{user.login}</Text>
-        <Text style={styles.subtitle}>{user.url}</Text>
-      </View>
-    </View>
-  );
+  return users.length ? (
+    <FlatList
+      data={users}
+      renderItem={({item}) => <User user={item} style={styles.container} />}
+    />
+  ) : null;
 };
 
 const styles = StyleSheet.create({
@@ -35,21 +28,5 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     borderBottomWidth: 0.6,
     borderBottomColor: '#ccc',
-  },
-  image: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-  },
-  nameText: {
-    fontSize: 24,
-    fontWeight: '500',
-    color: '#000',
-    textAlignVertical: 'center',
-    textTransform: 'capitalize',
-  },
-  subtitle: {
-    textAlignVertical: 'center',
-    fontWeight: '500',
   },
 });

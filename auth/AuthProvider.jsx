@@ -1,24 +1,21 @@
 import {createContext, useState, useContext} from 'react';
+import Navigation from '../navigation';
+import AuthStack from '../navigation/AuthStack';
+import AppStack from '../navigation/AppStack';
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
 
-export default ({children}) => {
-  const [user, setUser] = useState(null);
-
-  console.log('child = ', children);
+export default () => {
+  const [user, setUser] = useState();
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        setUser,
-        login: (email, password) => {
-          setUser(email);
-        },
-        logout: () => setUser(null),
+        login: email => setUser(email),
       }}>
-      {children}
+      <Navigation>{user ? <AppStack /> : <AuthStack />}</Navigation>
     </AuthContext.Provider>
   );
 };

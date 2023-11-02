@@ -4,7 +4,9 @@
  *
  * @format
  */
-import Navigation from './navigation';
+
+import AuthProvider from './auth/AuthProvider';
+// import Navigation from './navigation';
 export default function App() {
-  return <Navigation />;
+  return <AuthProvider />;
 }

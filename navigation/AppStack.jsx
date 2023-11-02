@@ -11,7 +11,6 @@ export default () => {
         title: 'Home Screen Title',
         headerStyle: {
           backgroundColor: '#f4511e',
-          // backgroundColor: 'red',
         },
         headerTintColor: 'white',
         headerTitleStyle: {
