@@ -6,8 +6,18 @@ const Stack = createNativeStackNavigator();
 export default () => {
   return (
     <Stack.Navigator
-      initialRouteName="Users"
-      screenOptions={{headerShown: true}}>
+      initialRouteName="Users one"
+      options={{
+        title: 'Home Screen Title',
+        headerStyle: {
+          backgroundColor: '#f4511e',
+          // backgroundColor: 'red',
+        },
+        headerTintColor: 'white',
+        headerTitleStyle: {
+          fontSize: 30,
+        },
+      }}>
       <Stack.Screen name="Users" component={UserList} />
     </Stack.Navigator>
   );
