@@ -3,6 +3,7 @@ import Navigation from '../navigation';
 import AuthStack from '../navigation/AuthStack';
 import AppStack from '../navigation/AppStack';
 import auth from '@react-native-firebase/auth';
+import {ToastAndroid} from 'react-native';
 
 export const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
@@ -27,23 +28,23 @@ export default () => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
-            console.error(e.code);
+            ToastAndroid.show(e.code, ToastAndroid.SHORT);
           }
         },
         register: async (email, password) => {
           try {
             await auth().createUserWithEmailAndPassword(email, password);
-            console.warn('User created successfully');
+            ToastAndroid.show('User created successfully', ToastAndroid.SHORT);
           } catch (e) {
-            console.error(e.code);
+            ToastAndroid.show(e.code, ToastAndroid.SHORT);
           }
         },
         logout: async () => {
           try {
             await auth().signOut();
-            console.warn('User signed out!');
+            ToastAndroid.show('User signed out!', ToastAndroid.SHORT);
           } catch (e) {
-            console.error(e.code);
+            ToastAndroid.show(e.code, ToastAndroid.SHORT);
           }
         },
       }}>
