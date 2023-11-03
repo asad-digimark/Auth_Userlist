@@ -15,6 +15,7 @@ export default ({user, onPress}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 16,
     paddingHorizontal: 12,
     paddingVertical: 6,
