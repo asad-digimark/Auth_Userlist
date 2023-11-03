@@ -1,7 +1,6 @@
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
-import {Dimensions} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-const height = Dimensions.get('window').height / 16;
+import {height} from '../utils/constants';
 
 export default ({title, backgroundColor, icon, color, ...rest}) => (
   <TouchableOpacity

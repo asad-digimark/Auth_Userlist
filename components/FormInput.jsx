@@ -1,8 +1,6 @@
 import {View, TextInput, StyleSheet} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Dimensions} from 'react-native';
-
-const height = Dimensions.get('window').height / 16;
+import {height} from '../utils/constants';
 
 export default ({icon, ...rest}) => {
   return (
