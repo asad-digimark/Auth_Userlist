@@ -1,14 +1,14 @@
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, Image, Text, StyleSheet} from 'react-native';
 
-export default ({user}) => {
+export default ({user, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={{uri: user.avatar_url}} style={styles.image} />
       <View>
         <Text style={styles.nameText}>{user.login}</Text>
         <Text style={styles.subtitle}>{user.url}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

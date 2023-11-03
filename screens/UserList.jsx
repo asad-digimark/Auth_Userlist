@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import User from '../components/User';
 
-export default () => {
+export default ({navigation}) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch('https://api.github.com/users')
@@ -11,6 +11,14 @@ export default () => {
   }, []);
 
   return users.length ? (
-    <FlatList data={users} renderItem={({item}) => <User user={item} />} />
+    <FlatList
+      data={users}
+      renderItem={({item}) => (
+        <User
+          user={item}
+          onPress={() => navigation.navigate('Profile', item)}
+        />
+      )}
+    />
   ) : null;
 };
