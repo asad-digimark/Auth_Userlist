@@ -7,10 +7,13 @@ import {useAuthContext} from '../auth/AuthProvider';
 export default ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const {login} = useAuthContext();
 
-  const handleSubmit = () => {
-    login(email, password);
+  const handleSubmit = async () => {
+    setLoading(true);
+    await login(email, password);
+    setLoading(false);
   };
 
   return (
@@ -35,7 +38,7 @@ export default ({navigation}) => {
         backgroundColor="#2e64e5"
         color="#fff"
         onPress={handleSubmit}
-        disabled={!email || !password}
+        disabled={!email || !password || loading}
       />
       <FormButton title="Forgot Password" color="#2e64e5" />
       <FormButton

@@ -8,10 +8,14 @@ export default ({navigation: {navigate}}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const {register} = useAuthContext();
 
-  const handleSubmit = () => {
-    register(email, password);
+  const handleSubmit = async () => {
+    setLoading(true);
+    await register(email, password);
+    setLoading(false);
   };
 
   return (
@@ -48,7 +52,8 @@ export default ({navigation: {navigate}}) => {
             !email ||
             !password ||
             !confirmPassword ||
-            password !== confirmPassword
+            password !== confirmPassword ||
+            loading
           }
         />
         <Text style={{textAlign: 'center'}}>
