@@ -13,7 +13,7 @@ export default ({title, backgroundColor, icon, color, ...rest}) => (
     {icon && (
       <FontAwesome name={icon} size={24} style={{alignSelf: 'center'}} />
     )}
-    <Text style={[styles.btnText, {color}]}>{title}</Text>
+    <Text style={[styles.btnText, {color, flex: icon ? 1 : 0}]}>{title}</Text>
   </TouchableOpacity>
 );
 
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   btnText: {
-    flex: 1,
     fontSize: 18,
     fontWeight: '500',
     textAlign: 'center',
