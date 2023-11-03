@@ -22,6 +22,7 @@ export default ({icon, secureTextEntry, ...rest}) => {
       {secureTextEntry && (
         <TouchableHighlight
           style={{alignSelf: 'center'}}
+          underlayColor="transparent"
           onPress={() => setSecure(prev => !prev)}>
           <FontAwesome
             name={secure ? 'eye' : 'eye-slash'}
