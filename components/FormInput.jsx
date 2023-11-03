@@ -8,9 +8,7 @@ export default ({icon, secureTextEntry, ...rest}) => {
   const [secure, setSecure] = useState(true);
   return (
     <View style={styles.input}>
-      {icon && (
-        <AntDesign name={icon} size={24} style={{alignSelf: 'center'}} />
-      )}
+      {icon && <AntDesign name={icon} size={24} style={styles.icon} />}
       <TextInput
         secureTextEntry={secureTextEntry ? secure : false}
         {...rest}
@@ -21,13 +19,13 @@ export default ({icon, secureTextEntry, ...rest}) => {
       />
       {secureTextEntry && (
         <TouchableHighlight
-          style={{alignSelf: 'center'}}
-          underlayColor="transparent"
+          style={styles.eyeBtn}
+          underlayColor="none"
           onPress={() => setSecure(prev => !prev)}>
           <FontAwesome
             name={secure ? 'eye' : 'eye-slash'}
             size={20}
-            style={{alignSelf: 'center'}}
+            style={styles.icon}
           />
         </TouchableHighlight>
       )}
@@ -45,4 +43,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     gap: 8,
   },
+  eyeBtn: {
+    alignSelf: 'center',
+    marginRight: 6,
+  },
+  icon: {alignSelf: 'center'},
 });
