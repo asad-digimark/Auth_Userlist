@@ -1,5 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import UserList from '../screens/UserList';
+import Profile from '../screens/Profile';
 import {useAuthContext} from '../auth/AuthProvider';
 import {Button} from 'react-native';
 
@@ -16,6 +17,7 @@ export default () => {
           headerRight: () => <Button title="Logout" onPress={logout} />,
         }}
       />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };
