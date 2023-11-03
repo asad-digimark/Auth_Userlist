@@ -20,16 +20,20 @@ export default ({icon, secureTextEntry, ...rest}) => {
         }}
       />
       {secureTextEntry && (
-        <TouchableHighlight
-          style={{alignSelf: 'center'}}
-          underlayColor="transparent"
-          onPress={() => setSecure(prev => !prev)}>
-          <FontAwesome name={secure ? 'eye' : 'eye-slash'} size={20} />
-        </TouchableHighlight>
+        <ShowHidePassword show={secure} setShow={setSecure} />
       )}
     </View>
   );
 };
+
+const ShowHidePassword = ({show, setShow}) => (
+  <TouchableHighlight
+    style={{alignSelf: 'center'}}
+    underlayColor="transparent"
+    onPress={() => setShow(prev => !prev)}>
+    <FontAwesome name={show ? 'eye' : 'eye-slash'} size={20} />
+  </TouchableHighlight>
+);
 
 const styles = StyleSheet.create({
   input: {
