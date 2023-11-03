@@ -44,7 +44,7 @@ export default ({navigation}) => {
           backgroundColor="#2e64e5"
           color="#fff"
           onPress={handleSubmit}
-          disabled={!email || !password || !confirmPassword}
+          disabled={!email || !password || password !== confirmPassword}
         />
         <Text style={{textAlign: 'center'}}>
           By registering, you confirm that you accept our Terms of service and

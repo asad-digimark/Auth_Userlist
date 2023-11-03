@@ -30,9 +30,15 @@ export default () => {
           setUser(email);
           AsyncStorage.setItem('_user', email);
         },
+        register: (email, password) => {
+          setUser(email);
+          AsyncStorage.setItem('_user', email);
+          console.warn('User created successfully');
+        },
         logout: () => {
           setUser();
           AsyncStorage.removeItem('_user');
+          console.warn('User Signed Out');
         },
       }}>
       <Navigation>{user ? <AppStack /> : <AuthStack />}</Navigation>
