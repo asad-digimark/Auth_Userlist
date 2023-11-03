@@ -9,6 +9,7 @@ export default ({route: {params: user}}) => {
         <Button title="Like" />
         <Button title="Follow" color="#333" />
       </View>
+      <Text style={styles.subtitle}>{user.url}</Text>
     </View>
   );
 };
@@ -30,6 +31,10 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlignVertical: 'center',
     textTransform: 'capitalize',
+  },
+  subtitle: {
+    textAlignVertical: 'center',
+    fontWeight: '500',
   },
   btnGroup: {
     flexDirection: 'row',
