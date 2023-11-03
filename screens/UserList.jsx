@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import User from '../components/User';
+import {BASE_URL} from '../config';
 
-export default ({navigation}) => {
+export default ({navigation: {navigate}}) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch('https://api.github.com/users')
+    fetch(`${BASE_URL}/users`)
       .then(res => res.json())
       .then(data => setUsers(data));
   }, []);
@@ -14,10 +15,7 @@ export default ({navigation}) => {
     <FlatList
       data={users}
       renderItem={({item}) => (
-        <User
-          user={item}
-          onPress={() => navigation.navigate('Profile', item)}
-        />
+        <User user={item} onPress={() => navigate('Profile', item)} />
       )}
     />
   ) : null;
