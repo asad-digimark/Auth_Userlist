@@ -1,10 +1,11 @@
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, TouchableHighlight} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Dimensions} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {useState} from 'react';
+import {height} from '../utils/constants';
 
-const height = Dimensions.get('window').height / 16;
-
-export default ({icon, ...rest}) => {
+export default ({icon, secureTextEntry, ...rest}) => {
+  const [secure, setSecure] = useState(true);
   return (
     <View style={styles.input}>
       {icon && (
@@ -12,11 +13,20 @@ export default ({icon, ...rest}) => {
       )}
       <TextInput
         {...rest}
+        secureTextEntry={secureTextEntry ? secure : false}
         style={{
           flex: 1,
           fontSize: 16,
         }}
       />
+      {secureTextEntry && (
+        <TouchableHighlight
+          style={{alignSelf: 'center'}}
+          underlayColor="transparent"
+          onPress={() => setSecure(prev => !prev)}>
+          <FontAwesome name={secure ? 'eye' : 'eye-slash'} size={20} />
+        </TouchableHighlight>
+      )}
     </View>
   );
 };
