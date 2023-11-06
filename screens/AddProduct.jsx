@@ -14,6 +14,8 @@ import FormButton from '../components/FormButton';
 
 import DatePicker from 'react-native-date-picker';
 
+import database from '@react-native-firebase/database';
+
 const AddProductScreen = ({navigation}) => {
   const [product, setProduct] = useState({
     name: '',
@@ -28,16 +30,8 @@ const AddProductScreen = ({navigation}) => {
   });
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const addProduct = () => {
-    // You can add validation here to ensure all required fields are filled
-    // Then, you can add the product to your data store or API
-
-    // Example: Add the product to a local data store
-    // Ensure you have a state management system (e.g., Redux) or API service for data management
-    // You can dispatch an action or make an API request to save the product
-    // After adding the product, navigate back to the product listing screen
-
-    navigation.navigate('ProductListing');
+  const addProduct = async () => {
+    const snapshot = await database().ref('/products/1').set(product);
   };
 
   return (

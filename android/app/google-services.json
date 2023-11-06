@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "241484266519",
+    "firebase_url": "https://test-3d303-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "test-3d303",
     "storage_bucket": "test-3d303.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "241484266519-amplnoq47oql8fisdvrtiivdrliilm59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.auth_userlist",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
         {
           "client_id": "241484266519-f2pkauph5l682dgma04chne736h56ru4.apps.googleusercontent.com",
           "client_type": 3
