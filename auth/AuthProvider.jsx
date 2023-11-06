@@ -12,6 +12,8 @@ export default () => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  console.log('user = ', user);
+
   useEffect(() => {
     return auth().onAuthStateChanged(user => {
       setUser(user);
@@ -24,6 +26,7 @@ export default () => {
   return (
     <AuthContext.Provider
       value={{
+        user,
         login: async (email, password) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
