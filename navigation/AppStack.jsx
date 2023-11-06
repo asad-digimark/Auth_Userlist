@@ -3,12 +3,14 @@ import UserList from '../screens/UserList';
 import Profile from './Profile';
 import {useAuthContext} from '../auth/AuthProvider';
 import {View, Button, Image} from 'react-native';
+import AddProduct from '../screens/AddProduct';
+import ProductListing from '../screens/ProductListing';
 
 const Stack = createNativeStackNavigator();
 
 export default () => {
   return (
-    <Stack.Navigator initialRouteName="Users">
+    <Stack.Navigator initialRouteName="Add Product">
       <Stack.Screen
         name="Users"
         component={UserList}
@@ -17,6 +19,8 @@ export default () => {
         }}
       />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Add Product" component={AddProduct} />
+      <Stack.Screen name="Product Listing" component={ProductListing} />
     </Stack.Navigator>
   );
 };

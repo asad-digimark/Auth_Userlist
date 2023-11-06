@@ -21,14 +21,14 @@ export default ({navigation}) => {
       <Text style={styles.heading}>Login</Text>
       <FormInput
         placeholder="Email"
-        icon="user"
+        iconLeft="user"
         value={email}
         keyboardType="email-address"
         onChangeText={v => setEmail(v)}
       />
       <FormInput
         placeholder="Password"
-        icon="lock"
+        iconLeft="lock"
         value={password}
         secureTextEntry
         onChangeText={v => setPassword(v)}

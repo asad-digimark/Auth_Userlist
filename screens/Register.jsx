@@ -24,21 +24,21 @@ export default ({navigation: {navigate}}) => {
         <Text style={styles.heading}>Register</Text>
         <FormInput
           placeholder="Email"
-          icon="user"
+          iconLeft="user"
           value={email}
           keyboardType="email-address"
           onChangeText={v => setEmail(v)}
         />
         <FormInput
           placeholder="Password"
-          icon="lock"
+          iconLeft="lock"
           value={password}
           secureTextEntry
           onChangeText={v => setPassword(v)}
         />
         <FormInput
           placeholder="Confirm Password"
-          icon="lock"
+          iconLeft="lock"
           value={confirmPassword}
           secureTextEntry
           onChangeText={v => setConfirmPassword(v)}

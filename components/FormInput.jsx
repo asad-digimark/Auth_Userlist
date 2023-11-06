@@ -4,11 +4,25 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {height} from '../utils/constants';
 import {useState} from 'react';
 
-export default ({icon, secureTextEntry, ...rest}) => {
+export default ({
+  iconLeft,
+  iconRight,
+  secureTextEntry,
+  onLeftIconPress,
+  onRightIconPress,
+  ...rest
+}) => {
   const [secure, setSecure] = useState(true);
   return (
     <View style={styles.input}>
-      {icon && <AntDesign name={icon} size={24} style={styles.icon} />}
+      {iconLeft && (
+        <AntDesign
+          name={iconLeft}
+          size={24}
+          style={styles.icon}
+          onPress={onLeftIconPress}
+        />
+      )}
       <TextInput
         secureTextEntry={secureTextEntry ? secure : false}
         {...rest}
@@ -17,6 +31,14 @@ export default ({icon, secureTextEntry, ...rest}) => {
           fontSize: 16,
         }}
       />
+      {iconRight && (
+        <AntDesign
+          name={iconRight}
+          size={24}
+          style={styles.icon}
+          onPress={onRightIconPress}
+        />
+      )}
       {secureTextEntry && (
         <TouchableHighlight
           style={styles.eyeBtn}
@@ -39,6 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 8,
     borderColor: '#ccc',
+    backgroundColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
     gap: 8,
