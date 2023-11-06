@@ -3,14 +3,6 @@ import {useState} from 'react';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import {useAuthContext} from '../auth/AuthProvider';
-import auth from '@react-native-firebase/auth';
-
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-
-GoogleSignin.configure({
-  webClientId:
-    '241484266519-f2pkauph5l682dgma04chne736h56ru4.apps.googleusercontent.com',
-});
 
 export default ({navigation: {navigate}}) => {
   const [email, setEmail] = useState('');
@@ -18,28 +10,12 @@ export default ({navigation: {navigate}}) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const {register} = useAuthContext();
+  const {register, handleGoogleLogin} = useAuthContext();
 
   const handleSubmit = async () => {
     setLoading(true);
     await register(email, password);
     setLoading(false);
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-      const res = await GoogleSignin.hasPlayServices({
-        showPlayServicesUpdateDialog: true,
-      });
-      console.log('res1-->', res);
-      const {idToken} = await GoogleSignin.signIn();
-      console.log('idToken = ', idToken);
-      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      console.log('googleCredential ===> ', googleCredential);
-      return auth().signInWithCredential(googleCredential);
-    } catch (e) {
-      console.error(e);
-    }
   };
 
   return (
