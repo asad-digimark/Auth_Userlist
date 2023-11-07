@@ -7,6 +7,7 @@ import AddProduct from '../screens/AddProduct';
 import Products from '../screens/Products';
 import ProductDetails from '../screens/ProductDetails';
 import Dashboard from '../screens/Dashboard';
+import Invoice from '../screens/Invoice';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,10 +22,11 @@ export default () => {
         }}
       />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Add Product" component={AddProduct} />
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Product Details" component={ProductDetails} />
-      <Stack.Screen name="Dashboard" component={Dashboard} />
+      <Stack.Screen name="Invoice" component={Invoice} />
     </Stack.Navigator>
   );
 };

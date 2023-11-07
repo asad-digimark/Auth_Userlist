@@ -9,6 +9,8 @@ import DatePicker from 'react-native-date-picker';
 import firestore from '@react-native-firebase/firestore';
 import {validateProduct} from '../validation';
 
+import storage from '@react-native-firebase/storage';
+
 const AddProductScreen = ({navigation}) => {
   const [product, setProduct] = useState({
     name: '',

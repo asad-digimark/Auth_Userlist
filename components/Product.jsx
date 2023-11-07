@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 export default ({product, onPress}) => {
   return (
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   td: {
-    fontSize: 15,
+    fontSize: 16,
   },
 });

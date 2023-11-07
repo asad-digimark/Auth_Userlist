@@ -9,7 +9,7 @@ export default ({navigation: {navigate}, route: {params: product}}) => {
         title="Add Product"
         onPress={() => navigate('Add Product')}
       />
-      <DashboardTile title="Invoice" />
+      <DashboardTile title="Invoice" onPress={() => navigate('Invoice')} />
     </SafeAreaView>
   );
 };
