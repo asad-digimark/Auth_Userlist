@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, SafeAreaView, ScrollView, Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 
 import FormButton from '../components/FormButton';
@@ -7,6 +7,7 @@ import FormButton from '../components/FormButton';
 import DatePicker from 'react-native-date-picker';
 
 import firestore from '@react-native-firebase/firestore';
+import {validateProduct} from '../validation';
 
 const AddProductScreen = ({navigation}) => {
   const [product, setProduct] = useState({
@@ -25,7 +26,7 @@ const AddProductScreen = ({navigation}) => {
   const addProduct = async () => {
     try {
       const res = await firestore().collection('Products').add(product);
-      console.warn('Product added!', res);
+      Alert.alert(undefined, 'Product added succesfully.');
     } catch (e) {
       console.error(e);
     }
@@ -34,7 +35,6 @@ const AddProductScreen = ({navigation}) => {
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-        <Text>Add Product</Text>
         <FormInput
           placeholder="Product Name"
           value={product.name}
@@ -85,7 +85,6 @@ const AddProductScreen = ({navigation}) => {
         <DatePicker
           open={showDatePicker}
           modal
-          style={styles.datePicker}
           date={product.purchaseDate || new Date()}
           mode="date"
           format="YYYY-MM-DD"
@@ -96,9 +95,10 @@ const AddProductScreen = ({navigation}) => {
           onCancel={() => setShowDatePicker(false)}
         />
         <FormButton
-          title="Add Product"
+          title="Add New Product"
           onPress={addProduct}
           backgroundColor="#0275d8"
+          disabled={!validateProduct(product)}
           color="#fff"
         />
       </SafeAreaView>
@@ -108,13 +108,8 @@ const AddProductScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
-    gap: 10,
-  },
-  datePicker: {
-    width: 200,
-    marginBottom: 20,
+    gap: 12,
   },
 });
 
