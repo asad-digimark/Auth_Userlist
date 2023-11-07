@@ -1,15 +1,10 @@
 import {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
+import {View, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
 import Product from '../components/Product';
 import firestore from '@react-native-firebase/firestore';
+import EmptyList from '../components/EmptyList';
 
-export default ({navigation: {navigate}}) => {
+export default ({navigation}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,9 +39,12 @@ export default ({navigation: {navigate}}) => {
           renderItem={({item}) => (
             <Product
               product={item}
-              onPress={() => navigate('Product Details', item)}
+              onPress={() => navigation.navigate('Product Details', item)}
             />
           )}
+          ListEmptyComponent={
+            <EmptyList onPress={() => navigation.replace('Add Product')} />
+          }
         />
       )}
     </View>

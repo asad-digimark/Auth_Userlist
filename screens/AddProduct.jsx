@@ -22,14 +22,21 @@ const AddProductScreen = ({navigation}) => {
     image: '',
   });
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const addProduct = async () => {
+    setLoading(true);
     try {
       const res = await firestore().collection('Products').add(product);
-      Alert.alert(undefined, 'Product added succesfully.');
+      Alert.alert(undefined, 'Product added succesfully.', [
+        {
+          onPress: () => navigation.replace('Products'),
+        },
+      ]);
     } catch (e) {
       console.error(e);
     }
+    setLoading(false);
   };
 
   return (
@@ -98,7 +105,7 @@ const AddProductScreen = ({navigation}) => {
           title="Add New Product"
           onPress={addProduct}
           backgroundColor="#0275d8"
-          disabled={!validateProduct(product)}
+          disabled={!validateProduct(product) || loading}
           color="#fff"
         />
       </SafeAreaView>

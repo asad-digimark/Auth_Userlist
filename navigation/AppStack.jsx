@@ -4,7 +4,7 @@ import Profile from './Profile';
 import {useAuthContext} from '../auth/AuthProvider';
 import {View, Button, Image} from 'react-native';
 import AddProduct from '../screens/AddProduct';
-import ProductListing from '../screens/ProductListing';
+import Products from '../screens/Products';
 import ProductDetails from '../screens/ProductDetails';
 import Dashboard from '../screens/Dashboard';
 
@@ -22,7 +22,7 @@ export default () => {
       />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Add Product" component={AddProduct} />
-      <Stack.Screen name="Product Listing" component={ProductListing} />
+      <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Product Details" component={ProductDetails} />
       <Stack.Screen name="Dashboard" component={Dashboard} />
     </Stack.Navigator>

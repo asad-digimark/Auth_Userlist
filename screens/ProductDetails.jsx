@@ -1,25 +1,30 @@
 import {useState, useEffect} from 'react';
 import {View, Text, FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {firestoreDate} from '../utils/constants';
 
 export default ({navigation, route: {params: product}}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.image} />
-      <Text style={styles.name}>Product Name</Text>
+      <Text style={styles.name}>{product.name} </Text>
       <View style={styles.details}>
         <View style={styles.tr}>
-          <Text style={styles.th}>Brand</Text>
-          <Text style={styles.th}>Purchase Date</Text>
-          <Text style={styles.th}>Purchase Price</Text>
-          <Text style={styles.th}>Sale Price</Text>
-          <Text style={styles.th}>Purchase Price</Text>
+          <Text style={styles.td}>Brand</Text>
+          <Text style={styles.td}>Purchase Price</Text>
+          <Text style={styles.td}>Purchase Date</Text>
+          <Text style={styles.td}>Sale Price</Text>
+          <Text style={styles.td}>Buyer Name</Text>
+          <Text style={styles.td}>Buyer Number</Text>
+          <Text style={styles.td}>Quantity</Text>
         </View>
         <View style={styles.tr}>
-          <Text style={styles.td}>Brand</Text>
-          <Text style={styles.td}>Purchase Date</Text>
-          <Text style={styles.td}>Purchase Price</Text>
-          <Text style={styles.td}>Sale Price</Text>
-          <Text style={styles.td}>Purchase Price</Text>
+          <Text style={styles.th}>{product.brand}</Text>
+          <Text style={styles.th}>{product.purchasePrice} Rs.</Text>
+          <Text style={styles.th}>{firestoreDate(product.purchaseDate)}</Text>
+          <Text style={styles.th}>{product.salePrice} Rs.</Text>
+          <Text style={styles.th}>{product.buyerName}</Text>
+          <Text style={styles.th}>{product.buyerNo}</Text>
+          <Text style={styles.th}>{product.quantity}</Text>
         </View>
       </View>
     </SafeAreaView>

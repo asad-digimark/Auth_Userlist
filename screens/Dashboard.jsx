@@ -11,10 +11,7 @@ import {
 export default ({navigation: {navigate}, route: {params: product}}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <DashboardTile
-        title="Products"
-        onPress={() => navigate('Product Listing')}
-      />
+      <DashboardTile title="Products" onPress={() => navigate('Products')} />
       <DashboardTile
         title="Add Product"
         onPress={() => navigate('Add Product')}
