@@ -1,12 +1,5 @@
-import {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  SafeAreaView,
-  TouchableHighlight,
-} from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
+import DashboardTile from '../components/DashboardTile';
 
 export default ({navigation: {navigate}, route: {params: product}}) => {
   return (
@@ -21,14 +14,6 @@ export default ({navigation: {navigate}, route: {params: product}}) => {
   );
 };
 
-const DashboardTile = ({title, onPress}) => {
-  return (
-    <TouchableHighlight style={styles.box} onPress={onPress}>
-      <Text style={styles.boxText}>{title} </Text>
-    </TouchableHighlight>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -38,18 +23,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f7f7f7',
     flexWrap: 'wrap',
-  },
-  box: {
-    backgroundColor: 'pink',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 80,
-    width: '45%',
-    borderRadius: 8,
-  },
-  boxText: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: '#000',
   },
 });
