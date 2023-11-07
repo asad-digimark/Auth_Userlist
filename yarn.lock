@@ -1710,6 +1710,11 @@
   "resolved" "https://registry.npmjs.org/@react-native-firebase/database/-/database-18.6.1.tgz"
   "version" "18.6.1"
 
+"@react-native-firebase/firestore@^18.6.1":
+  "integrity" "sha512-D3jGxNUMJg2D4CF7bdsXGfBAvs1F1XPOJMSqWJNFZnS/3voxiNclqrm4yxIn9ptFAsJHmXqMUHDA0vASxhZDWA=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-18.6.1.tgz"
+  "version" "18.6.1"
+
 "@react-native-google-signin/google-signin@^10.1.0":
   "integrity" "sha512-9hhIlnNMfB6NO2738M437egA1p6inKdXXazh0qf6HJeBuLBTePSecePCOkVPczivM1mglquYXWCHJlx4D3Z7xw=="
   "resolved" "https://registry.npmjs.org/@react-native-google-signin/google-signin/-/google-signin-10.1.0.tgz"

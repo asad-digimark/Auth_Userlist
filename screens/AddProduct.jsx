@@ -1,20 +1,12 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import {Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import FormInput from '../components/FormInput';
 
 import FormButton from '../components/FormButton';
 
 import DatePicker from 'react-native-date-picker';
 
-import database from '@react-native-firebase/database';
+import firestore from '@react-native-firebase/firestore';
 
 const AddProductScreen = ({navigation}) => {
   const [product, setProduct] = useState({
@@ -31,7 +23,12 @@ const AddProductScreen = ({navigation}) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const addProduct = async () => {
-    const snapshot = await database().ref('/products/1').set(product);
+    try {
+      const res = await firestore().collection('Products').add(product);
+      console.warn('Product added!', res);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -98,7 +95,12 @@ const AddProductScreen = ({navigation}) => {
           }}
           onCancel={() => setShowDatePicker(false)}
         />
-        <Button title="Add Product" onPress={addProduct} />
+        <FormButton
+          title="Add Product"
+          onPress={addProduct}
+          backgroundColor="#0275d8"
+          color="#fff"
+        />
       </SafeAreaView>
     </ScrollView>
   );
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    gap: 8,
+    gap: 10,
   },
   datePicker: {
     width: 200,
