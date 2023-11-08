@@ -49,8 +49,10 @@ export default ({navigation}) => {
         onChangeText={text => {
           if (text) {
             setFilteredProducts(
-              products.filter(p =>
-                p.name.toLowerCase().includes(text.toLowerCase()),
+              products.filter(
+                p =>
+                  p.name.search(RegExp(text, 'i')) >= 0 ||
+                  p.brand.search(RegExp(text, 'i')) >= 0,
               ),
             );
           } else {
