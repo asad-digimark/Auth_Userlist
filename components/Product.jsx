@@ -1,9 +1,9 @@
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 export default ({product, onPress}) => {
   return (
     <TouchableOpacity style={styles.product} onPress={onPress}>
-      {/* <Image source={{uri: product.image}} /> */}
+      <Image source={{uri: product.image}} style={styles.image} />
       <Text style={styles.td}>{product.name}</Text>
       <Text style={styles.td}>{product.brand}</Text>
       <Text style={styles.td}>{product.salePrice} Rs.</Text>
@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 16,
   },
   td: {
     fontSize: 16,
