@@ -39,7 +39,7 @@ export default ({navigation}) => {
           renderItem={({item}) => (
             <Product
               product={item}
-              onPress={() => navigation.navigate('Product Details', item)}
+              onPress={() => navigation.navigate('Details', item)}
             />
           )}
           ListEmptyComponent={

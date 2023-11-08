@@ -7,7 +7,8 @@ import AddProduct from '../screens/AddProduct';
 import Products from '../screens/Products';
 import ProductDetails from '../screens/ProductDetails';
 import Dashboard from '../screens/Dashboard';
-import Invoice from '../screens/Invoice';
+import Invoices from '../screens/Invoices';
+import CreateInvoice from '../screens/CreateInvoice';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,8 +26,9 @@ export default () => {
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Add Product" component={AddProduct} />
       <Stack.Screen name="Products" component={Products} />
-      <Stack.Screen name="Product Details" component={ProductDetails} />
-      <Stack.Screen name="Invoice" component={Invoice} />
+      <Stack.Screen name="Details" component={ProductDetails} />
+      <Stack.Screen name="Invoices" component={Invoices} />
+      <Stack.Screen name="Create Invoice" component={CreateInvoice} />
     </Stack.Navigator>
   );
 };
