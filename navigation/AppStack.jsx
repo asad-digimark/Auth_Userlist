@@ -23,7 +23,13 @@ export default () => {
         }}
       />
       <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Dashboard" component={Dashboard} />
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          headerRight: () => <HeaderRight />,
+        }}
+      />
       <Stack.Screen name="Add Product" component={AddProduct} />
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Details" component={ProductDetails} />

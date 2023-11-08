@@ -1,15 +1,33 @@
-import {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  SafeAreaView,
-  Image,
-} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, Image, Alert} from 'react-native';
 import {firestoreDate} from '../utils/constants';
+import FormButton from '../components/FormButton';
+import firestore from '@react-native-firebase/firestore';
+import {ToastAndroid} from 'react-native';
 
 export default ({navigation, route: {params: product}}) => {
+  const handleDelete = async () => {
+    Alert.alert('Confirm Deletion', 'Are you sure to delete this product?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {onPress: deleteProduct, text: 'Delete', style: 'destructive'},
+    ]);
+  };
+
+  const deleteProduct = async () => {
+    try {
+      const res = await firestore()
+        .collection('Products')
+        .doc(product.id)
+        .delete();
+      ToastAndroid.show('Success', ToastAndroid.SHORT);
+      navigation.goBack();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Image source={{uri: product.image}} style={styles.image} />
@@ -34,6 +52,11 @@ export default ({navigation, route: {params: product}}) => {
           <Text style={styles.th}>{product.quantity}</Text>
         </View>
       </View>
+      <FormButton
+        title="Delete"
+        backgroundColor="#ccc"
+        onPress={handleDelete}
+      />
     </SafeAreaView>
   );
 };
