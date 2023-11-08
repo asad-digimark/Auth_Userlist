@@ -52,10 +52,9 @@ const AddProductScreen = ({navigation}) => {
   const pickImage = async () => {
     try {
       const image = await ImagePicker.openPicker({
-        width: 200,
-        height: 300,
         compressImageQuality: 0.6,
         cropping: true,
+        freeStyleCropEnabled: true,
       });
       const imageUri = Platform.OS === 'ios' ? image.sourceURL : image.path;
       setImage(imageUri);

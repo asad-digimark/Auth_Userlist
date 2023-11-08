@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   image: {
     width: 40,
     height: 40,
-    borderRadius: 16,
+    borderRadius: 10,
   },
   td: {
     fontSize: 16,

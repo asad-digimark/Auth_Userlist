@@ -9,23 +9,24 @@ export default ({navigation}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProducts().then(products => {
-      setProducts(products);
-      setLoading(false);
-    });
+    const subscriber = firestore()
+      .collection('Products')
+      .onSnapshot(onResult, onError);
+    return () => subscriber();
   }, []);
 
-  const getProducts = async () => {
-    try {
-      const products = [];
-      const querySnapshot = await firestore().collection('Products').get();
-      querySnapshot.forEach(product =>
-        products.push({id: product.id, ...product.data()}),
-      );
-      return products;
-    } catch (e) {
-      console.error(e);
-    }
+  const onResult = querySnapshot => {
+    const products = [];
+    querySnapshot.forEach(product =>
+      products.push({id: product.id, ...product.data()}),
+    );
+    setProducts(products);
+    setLoading(false);
+  };
+
+  const onError = e => {
+    console.error(e);
+    setLoading(false);
   };
 
   return (
