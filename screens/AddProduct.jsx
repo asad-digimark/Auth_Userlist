@@ -11,16 +11,11 @@ import {
   Text,
 } from 'react-native';
 import FormInput from '../components/FormInput';
-
 import FormButton from '../components/FormButton';
-
 import DatePicker from 'react-native-date-picker';
-
 import firestore from '@react-native-firebase/firestore';
 import {validateProduct} from '../validation';
-
 import storage from '@react-native-firebase/storage';
-
 import ImagePicker from 'react-native-image-crop-picker';
 
 const AddProductScreen = ({navigation}) => {
@@ -71,11 +66,11 @@ const AddProductScreen = ({navigation}) => {
       filename = name + Date.now() + '.' + extension;
 
       const task = storage().ref(filename).putFile(imageUri);
-      task.on('state_changed', snapshot => {
-        console.log(
-          Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100),
-        );
-      });
+      // task.on('state_changed', snapshot => {
+      //   console.log(
+      //     Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100),
+      //   );
+      // });
 
       await task;
       const url = await storage().ref(filename).getDownloadURL();

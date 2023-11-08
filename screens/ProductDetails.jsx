@@ -1,11 +1,18 @@
 import {useState, useEffect} from 'react';
-import {View, Text, FlatList, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+} from 'react-native';
 import {firestoreDate} from '../utils/constants';
 
 export default ({navigation, route: {params: product}}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.image} />
+      <Image source={{uri: product.image}} style={styles.image} />
       <Text style={styles.name}>{product.name} </Text>
       <View style={styles.details}>
         <View style={styles.tr}>
@@ -43,7 +50,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: 'red',
   },
   name: {
     fontSize: 24,

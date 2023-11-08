@@ -34,24 +34,14 @@ const ImageSelector = () => {
     // });
   };
 
-  const pickImage = async () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true,
-    })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(e => console.log(e));
-  };
+  const pickImage = async () => {};
 
   return (
     <View>
       <Button title="Pick Image" onPress={pickImage} />
       {imageSource && (
         <Image
-          source={imageSource}
+          source={{uri: imageSource}}
           style={{width: 200, height: 200, marginTop: 10}}
         />
       )}
