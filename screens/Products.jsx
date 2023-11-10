@@ -11,6 +11,7 @@ import Product from '../components/Product';
 import firestore from '@react-native-firebase/firestore';
 import EmptyList from '../components/EmptyList';
 import FormInput from '../components/FormInput';
+import {padding} from '../utils/constants';
 
 export default ({navigation}) => {
   const [products, setProducts] = useState([]);
@@ -80,7 +81,7 @@ export default ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding,
     gap: 8,
   },
 });

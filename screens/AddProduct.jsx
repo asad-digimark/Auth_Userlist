@@ -17,6 +17,7 @@ import firestore from '@react-native-firebase/firestore';
 import {validateProduct} from '../validation';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
+import {padding} from '../utils/constants';
 
 const AddProductScreen = ({navigation}) => {
   const [product, setProduct] = useState({
@@ -192,7 +193,7 @@ const AddProductScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding,
     gap: 12,
     alignItems: 'center',
   },

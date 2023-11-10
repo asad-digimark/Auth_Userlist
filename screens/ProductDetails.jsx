@@ -3,6 +3,7 @@ import {firestoreDate} from '../utils/constants';
 import FormButton from '../components/FormButton';
 import firestore from '@react-native-firebase/firestore';
 import {ToastAndroid} from 'react-native';
+import {padding} from '../utils/constants';
 
 export default ({navigation, route: {params: product}}) => {
   const handleDelete = async () => {
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 18,
+    padding,
     gap: 16,
     backgroundColor: '#f7f7f7',
   },
