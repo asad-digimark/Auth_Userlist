@@ -53,6 +53,8 @@ const AddProductScreen = ({navigation}) => {
   const pickImage = async () => {
     try {
       const image = await ImagePicker.openPicker({
+        width: 100,
+        height: 200,
         compressImageQuality: 0.6,
         cropping: true,
         freeStyleCropEnabled: true,
@@ -111,7 +113,11 @@ const AddProductScreen = ({navigation}) => {
             />
           )}
           {image ? (
-            <TouchableOpacity onPress={() => setImage('')}>
+            <TouchableOpacity
+              onPress={() => {
+                setImage('');
+                setProduct(prev => ({...prev, image: ''}));
+              }}>
               <Text>Remove</Text>
             </TouchableOpacity>
           ) : (

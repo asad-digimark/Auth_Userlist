@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import EmptyList from '../components/EmptyList';
 import FormInput from '../components/FormInput';
 import {padding} from '../utils/constants';
+import storage from '@react-native-firebase/storage';
 
 export default ({navigation}) => {
   const [products, setProducts] = useState([]);
@@ -99,9 +100,10 @@ const Footer = ({products, setSelection}) => {
   const deleteProduct = async () => {
     const batch = firestore().batch();
 
-    products.forEach(id => {
+    products.forEach(({id, image}) => {
       const docRef = firestore().collection('Products').doc(id);
       batch.delete(docRef);
+      storage().refFromURL(image).delete();
     });
 
     try {
