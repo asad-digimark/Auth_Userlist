@@ -1,9 +1,7 @@
 import CheckBox from '@react-native-community/checkbox';
 import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
-export default ({product, onPress, selection, setSelection}) => {
-  const handlePress = () => (selection.length ? toggleSelect() : onPress());
-
+export default ({product, selection, setSelection}) => {
   const toggleSelect = () => {
     if (isChecked) {
       setSelection(prev => prev.filter(({id}) => id !== product.id));
@@ -15,15 +13,8 @@ export default ({product, onPress, selection, setSelection}) => {
   const isChecked = Boolean(selection.find(({id}) => id === product.id));
 
   return (
-    <TouchableOpacity
-      style={styles.product}
-      onPress={handlePress}
-      onLongPress={() =>
-        setSelection([...selection, {id: product.id, image: product.image}])
-      }>
-      {selection.length > 0 && (
-        <CheckBox value={isChecked} onValueChange={toggleSelect} />
-      )}
+    <TouchableOpacity style={styles.product} onPress={toggleSelect}>
+      <CheckBox value={isChecked} onValueChange={toggleSelect} />
       <Image source={{uri: product.image}} style={styles.image} />
       <Text style={styles.td}>{product.name}</Text>
       <Text style={styles.td}>{product.brand}</Text>
