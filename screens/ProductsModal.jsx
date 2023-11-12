@@ -9,11 +9,11 @@ import {
   Text,
   ToastAndroid,
 } from 'react-native';
-import Product from '../components/Product';
 import firestore from '@react-native-firebase/firestore';
 import FormInput from '../components/FormInput';
 import {padding} from '../utils/constants';
 import storage from '@react-native-firebase/storage';
+import ModalProduct from '../components/ModalProduct';
 
 export default ({selection, setSelection, setModal}) => {
   const [products, setProducts] = useState([]);
@@ -68,7 +68,7 @@ export default ({selection, setSelection, setModal}) => {
         data={filteredProducts}
         keyExtractor={item => item.id}
         renderItem={({item, index}) => (
-          <Product
+          <ModalProduct
             product={item}
             selection={selection}
             setSelection={setSelection}
