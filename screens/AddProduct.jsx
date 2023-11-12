@@ -18,6 +18,7 @@ import {validateProduct} from '../validation';
 import storage from '@react-native-firebase/storage';
 import ImagePicker from 'react-native-image-crop-picker';
 import {padding} from '../utils/constants';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const AddProductScreen = ({navigation}) => {
   const [product, setProduct] = useState({
@@ -97,20 +98,23 @@ const AddProductScreen = ({navigation}) => {
               source={{uri: image}}
               style={{
                 width: 60,
-                height: 60,
+                height: 56,
                 backgroundColor: '#ccc',
-                borderRadius: 30,
+                borderRadius: 12,
               }}
             />
           ) : (
             <View
               style={{
                 width: 60,
-                height: 60,
+                height: 56,
                 backgroundColor: '#ccc',
-                borderRadius: 30,
-              }}
-            />
+                borderRadius: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <FontAwesome name="image" size={48} />
+            </View>
           )}
           {image ? (
             <TouchableOpacity
