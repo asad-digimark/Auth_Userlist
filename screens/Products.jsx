@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Alert,
   Button,
+	ToastAndroid,
 } from 'react-native';
 import Product from '../components/Product';
 import firestore from '@react-native-firebase/firestore';
@@ -110,6 +111,9 @@ const Footer = ({products, setSelection}) => {
       setSelection([]);
       const res = await batch.commit();
       Alert.alert(undefined, 'Products deleted successfully');
+
+      ToastAndroid.show('Success', ToastAndroid.SHORT);
+
     } catch (error) {
       console.error('Error deleting items:', error);
     }
