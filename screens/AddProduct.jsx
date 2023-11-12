@@ -79,9 +79,7 @@ const AddProductScreen = ({navigation}) => {
       const url = await storage().ref(filename).getDownloadURL();
 
       setProduct(prev => ({...prev, image: url}));
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   };
 
   return (
