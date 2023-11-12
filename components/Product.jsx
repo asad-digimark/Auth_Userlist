@@ -25,9 +25,35 @@ export default ({product, onPress, selection, setSelection}) => {
         <CheckBox value={isChecked} onValueChange={toggleSelect} />
       )}
       <Image source={{uri: product.image}} style={styles.image} />
-      <Text style={styles.td}>{product.name}</Text>
-      <Text style={styles.td}>{product.brand}</Text>
-      <Text style={styles.td}>{product.salePrice} Rs.</Text>
+      <Text
+        style={[
+          styles.td,
+          {
+            width: '30%',
+            textAlign: 'center',
+          },
+        ]}>
+        {product.name}
+      </Text>
+      <Text
+        style={[
+          styles.td,
+          {
+            width: '25%',
+          },
+        ]}>
+        {product.brand}
+      </Text>
+      <Text
+        style={[
+          styles.td,
+          {
+            width: '20%',
+            textAlign: 'right',
+          },
+        ]}>
+        {product.salePrice} Rs.
+      </Text>
     </TouchableOpacity>
   );
 };
