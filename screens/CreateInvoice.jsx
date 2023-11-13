@@ -1,15 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  Modal,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import Products from './Products';
-import CheckBox from '@react-native-community/checkbox';
+import {View, Text, Button, Modal, StyleSheet} from 'react-native';
 import ProductsModal from './ProductsModal';
 import FormButton from '../components/FormButton';
 import {padding} from '../utils/constants';
@@ -25,10 +15,6 @@ const InvoiceScreen = () => {
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
-
-  selectedProducts.forEach(p => {
-    console.log(p.name, p.quantity);
-  });
 
   return (
     <View style={styles.container}>
@@ -73,6 +59,7 @@ const InvoiceScreen = () => {
           0,
         )}
       </Text>
+      <FormButton title="Create Invoice" backgroundColor="#bbb" color="#000" />
     </View>
   );
 };
@@ -80,6 +67,11 @@ const InvoiceScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding,
+    borderWidth: 1,
+    flex: 1,
+    // alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
   },
   modalView: {
     flex: 1,
@@ -93,12 +85,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
   },
-  // footer: {
-  //   flexDirection: 'row',
-  //   justifyContent: 'center',
-  //   gap: 8,
-  //   marginBottom: 12,
-  // },
 });
 
 export default InvoiceScreen;
