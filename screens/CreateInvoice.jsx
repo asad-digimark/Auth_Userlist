@@ -13,17 +13,43 @@ import CheckBox from '@react-native-community/checkbox';
 import ProductsModal from './ProductsModal';
 import FormButton from '../components/FormButton';
 import {padding} from '../utils/constants';
+import FormInput from '../components/FormInput';
+import DatePicker from 'react-native-date-picker';
 
 const InvoiceScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selection, setSelection] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [date, setDate] = useState('');
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
 
+  selectedProducts.forEach(p => {
+    console.log(p.name, p.quantity);
+  });
+
   return (
     <View style={styles.container}>
+      <FormInput
+        placeholder="Date"
+        value={date ? date.toDateString() : ''}
+        iconRight="calendar"
+        onRightIconPress={() => setShowDatePicker(true)}
+      />
+      <DatePicker
+        open={showDatePicker}
+        modal
+        date={date || new Date()}
+        mode="date"
+        format="YYYY-MM-DD"
+        onConfirm={date => {
+          setShowDatePicker(false);
+          setDate(date);
+        }}
+        onCancel={() => setShowDatePicker(false)}
+      />
       <Button title="Select Products" onPress={toggleModal} />
       <Modal
         animationType="slide"
@@ -33,13 +59,20 @@ const InvoiceScreen = () => {
         <View style={styles.modalView}>
           <View style={styles.modalContent}>
             <ProductsModal
-              selection={selection}
-              setSelection={setSelection}
-              setModal={setModalVisible}
+              selectedProducts={selectedProducts}
+              setSelectedProducts={setSelectedProducts}
+              toggleModal={toggleModal}
             />
           </View>
         </View>
       </Modal>
+      <Text>
+        Total Price ={' '}
+        {selectedProducts.reduce(
+          (pre, curr) => pre + +curr.salePrice * curr.quantity,
+          0,
+        )}
+      </Text>
     </View>
   );
 };
@@ -60,12 +93,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
   },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 8,
-    marginBottom: 12,
-  },
+  // footer: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'center',
+  //   gap: 8,
+  //   marginBottom: 12,
+  // },
 });
 
 export default InvoiceScreen;

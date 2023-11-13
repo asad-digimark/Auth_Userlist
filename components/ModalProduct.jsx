@@ -1,27 +1,42 @@
 import CheckBox from '@react-native-community/checkbox';
 import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import QuantitySelector from './QuantitySelector';
+import {useState} from 'react';
 
-export default ({product, selection, setSelection}) => {
-  const toggleSelect = () => {
-    if (isChecked) {
-      setSelection(prev => prev.filter(({id}) => id !== product.id));
-    } else {
-      setSelection(prev => [...prev, {id: product.id, image: product.image}]);
+export default ({product, setSelection}) => {
+  const [quantity, setQuantity] = useState(1);
+  const [checked, setChecked] = useState(false);
+
+  const handleQuantityChange = newQuantity => {
+    setQuantity(newQuantity);
+    if (checked) {
+      setSelection(prev =>
+        prev.map(p =>
+          p.id === product.id ? {...p, quantity: newQuantity} : p,
+        ),
+      );
     }
   };
 
-  const isChecked = Boolean(selection.find(({id}) => id === product.id));
+  const toggleChecked = () => {
+    if (checked) {
+      setSelection(prev => prev.filter(({id}) => id !== product.id));
+    } else {
+      setSelection(prev => [...prev, {...product, quantity}]);
+    }
+    setChecked(!checked);
+  };
 
   return (
-    <TouchableOpacity style={styles.product} onPress={toggleSelect}>
-      <CheckBox value={isChecked} onValueChange={toggleSelect} />
+    <TouchableOpacity style={styles.product} onPress={toggleChecked}>
+      <CheckBox value={checked} onValueChange={toggleChecked} />
       <Image source={{uri: product.image}} style={styles.image} />
       <Text
         style={[
           styles.td,
           {
-            width: '30%',
-            textAlign: 'center',
+            width: '26%',
+            marginLeft: 4,
           },
         ]}>
         {product.name}
@@ -30,7 +45,7 @@ export default ({product, selection, setSelection}) => {
         style={[
           styles.td,
           {
-            width: '25%',
+            width: '24%',
           },
         ]}>
         {product.brand}
@@ -40,11 +55,14 @@ export default ({product, selection, setSelection}) => {
           styles.td,
           {
             width: '20%',
-            textAlign: 'right',
           },
         ]}>
         {product.salePrice} Rs.
       </Text>
+      <QuantitySelector
+        quantity={quantity}
+        onQuantityChange={handleQuantityChange}
+      />
     </TouchableOpacity>
   );
 };

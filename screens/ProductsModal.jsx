@@ -4,24 +4,22 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
-  Alert,
   Button,
   Text,
-  ToastAndroid,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import FormInput from '../components/FormInput';
 import {padding} from '../utils/constants';
-import storage from '@react-native-firebase/storage';
 import ModalProduct from '../components/ModalProduct';
 
-export default ({selection, setSelection, setModal}) => {
+export default ({setSelectedProducts, toggleModal}) => {
   const [products, setProducts] = useState([]);
+  const [selection, setSelection] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setSelection([]);
+    setSelectedProducts([]);
     const subscriber = firestore()
       .collection('Products')
       .onSnapshot(onResult, onError);
@@ -41,6 +39,12 @@ export default ({selection, setSelection, setModal}) => {
   const onError = e => {
     console.error(e);
     setLoading(false);
+  };
+
+  const handleAdd = () => {
+    console.log('sel-> ', selection);
+    setSelectedProducts(selection);
+    toggleModal();
   };
 
   return loading ? (
@@ -67,7 +71,7 @@ export default ({selection, setSelection, setModal}) => {
       <FlatList
         data={filteredProducts}
         keyExtractor={item => item.id}
-        renderItem={({item, index}) => (
+        renderItem={({item}) => (
           <ModalProduct
             product={item}
             selection={selection}
@@ -77,8 +81,8 @@ export default ({selection, setSelection, setModal}) => {
         ListEmptyComponent={<Text>Empty</Text>}
       />
       <View style={styles.footer}>
-        <Button title="Close" onPress={() => setModal(false)} color="red" />
-        <Button title={'Add ' + selection.length} />
+        <Button title="Close" onPress={toggleModal} color="red" />
+        <Button title={'Add ' + selection.length} onPress={handleAdd} />
       </View>
     </View>
   );
